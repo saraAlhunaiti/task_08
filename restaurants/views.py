@@ -31,7 +31,7 @@ def restaurant_update(request, restaurant_id):
     restaurant_obj = Restaurant.objects.get(id=restaurant_id)
     form = RestaurantForm(instance=restaurant_obj)
     if request.method == "POST":
-        form = RestaurantForm(request.POST, request.FILES)
+        form = RestaurantForm(request.POST, request.FILES,instance=restaurant_obj)
         if form.is_valid():
             form.save()
             return redirect('restaurant-list')
